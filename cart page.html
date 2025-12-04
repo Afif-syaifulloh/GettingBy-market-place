@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Keranjang Belanja</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-[#1A1A1A] text-white p-6">
+
+  <h1 class="text-3xl font-bold text-[#FFD500] mb-6">Keranjang Belanja</h1>
+
+  <!-- Tombol Hapus Semua -->
+  <div class="flex justify-between items-center mb-4">
+    <button onclick="clearCart()"
+      class="bg-red-600 px-4 py-2 rounded hover:bg-red-500">
+      Hapus Semua Cart
+    </button>
+
+    <button onclick="checkout()"
+      class="bg-green-600 px-4 py-2 rounded hover:bg-green-500">
+      Checkout
+    </button>
+  </div>
+
+  <div id="cart-items" class="space-y-4"></div>
+
+  <h2 class="text-xl font-bold mt-6">Total: <span id="total">Rp 0</span></h2>
+
+  <script>
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let history = JSON.parse(localStorage.getItem("history")) || [];
+    let container = document.getElementById("cart-items");
+    let totalPrice = 0;
+
+    function loadCart() {
+      container.innerHTML = "";
+      totalPrice = 0;
+
+      if (cart.length === 0) {
+        container.innerHTML = `<p class='text-gray-400'>Keranjang kosong.</p>`;
+        document.getElementById("total").textContent = "Rp 0";
+        return;
+      }
+
+      cart.forEach((item, index) => {
+        totalPrice += item.price * item.quantity;
+
+        container.innerHTML += `
+          <div class="bg-[#2E2E2E] p-4 rounded border border-[#00AEEF] flex gap-4 items-center">
+            <img src="${item.image}" class="w-20 h-20 object-cover rounded">
+
+            <div class="flex-1">
+              <h2 class="text-[#FFD500] font-bold">${item.name}</h2>
+              <p>Harga: Rp ${item.price.toLocaleString()}</p>
+              <p>Qty: ${item.quantity}</p>
+            </div>
+
+            <button onclick="removeItem(${index})"
+              class="bg-red-600 px-3 py-1 rounded hover:bg-red-500">
+              Hapus
+            </button>
+          </div>
+        `;
+      });
+
+      document.getElementById("total").textContent =
+        "Rp " + totalPrice.toLocaleString();
+    }
+
+    loadCart();
+
+    // Hapus item satuan
+    function removeItem(i) {
+      const name = cart[i].name;
+
+      // tambahkan ke history
+      history.push({
+        action: "Hapus Item",
+        detail: `${name} dihapus dari keranjang`,
+        time: new Date().toLocaleString()
+      });
+
+      cart.splice(i, 1);
+
+      localStorage.setItem("cart", JSON.stringify(cart));
+      localStorage.setItem("history", JSON.stringify(history));
+
+      loadCart();
+    }
+
+    // Hapus semua cart
+    function clearCart() {
+      if (!confirm("Yakin hapus semua isi keranjang?")) return;
+
+      history.push({
+        action: "Clear Cart",
+        detail: `Semua barang dihapus dari keranjang`,
+        time: new Date().toLocaleString()
+      });
+
+      localStorage.removeItem("cart");
+      localStorage.setItem("history", JSON.stringify(history));
+
+      cart = [];
+      loadCart();
+    }
+
+    // Checkout
+    function checkout() {
+      if (cart.length === 0) {
+        alert("Keranjang masih kosong!");
+        return;
+      }
+
+      history.push({
+        action: "Checkout",
+        detail: `Berhasil checkout barang senilai Rp ${totalPrice.toLocaleString()}`,
+        time: new Date().toLocaleString()
+      });
+
+      localStorage.removeItem("cart");
+      localStorage.setItem("history", JSON.stringify(history));
+
+      cart = [];
+      loadCart();
+
+      alert("Checkout berhasil!");
+    }
+  </script>
+
+</body>
+</html>

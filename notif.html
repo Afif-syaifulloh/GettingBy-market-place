@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>History Aktivitas</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-[#1A1A1A] text-white p-6">
+
+  <h1 class="text-2xl font-bold text-[#FFD500] mb-4">History Notifikasi / Aktivitas</h1>
+
+  <button onclick="clearHistory()"
+    class="mb-4 bg-red-600 px-4 py-2 rounded hover:bg-red-500">
+    Hapus Semua History
+  </button>
+
+  <div id="history-list" class="space-y-4"></div>
+
+  <script>
+    let history = JSON.parse(localStorage.getItem("history")) || [];
+    const container = document.getElementById("history-list");
+
+    if (history.length === 0) {
+      container.innerHTML = `<p class='text-gray-400'>Belum ada aktivitas.</p>`;
+    }
+
+    history.forEach((h, index) => {
+      container.innerHTML += `
+        <div class="p-4 bg-[#2E2E2E] border border-[#00AEEF] rounded shadow">
+          <p class="font-bold text-[#FFD500]">${h.action}</p>
+          <p>${h.detail}</p>
+          <p class="text-sm text-gray-400 mt-1">${h.time}</p>
+
+          <button onclick="deleteOne(${index})"
+            class="mt-2 text-sm bg-red-600 px-3 py-1 rounded hover:bg-red-500">
+            Hapus
+          </button>
+        </div>
+      `;
+    });
+
+    function deleteOne(i) {
+      history.splice(i, 1);
+      localStorage.setItem("history", JSON.stringify(history));
+      location.reload();
+    }
+
+    function clearHistory() {
+      localStorage.removeItem("history");
+      location.reload();
+    }
+  </script>
+
+</body>
+</html>

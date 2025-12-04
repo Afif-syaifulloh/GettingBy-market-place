@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings - Getting By Shop</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-color: #1A1A1A;
+      color: #FFFFFF;
+      font-family: Arial, sans-serif;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="w-full px-4 py-3 flex items-center justify-between bg-[#2E2E2E] border-b border-[#00AEEF] shadow-lg">
+    <a href="homepage-after.html" class="text-[#FFD500] font-bold text-lg">← Back</a>
+
+    <h1 class="text-xl font-bold text-[#FFD500]">Settings</h1>
+
+    <div></div>
+  </nav>
+
+  <div class="p-6 space-y-8">
+
+    <!-- ============================
+         USER INFO
+    ============================== -->
+    <section class="bg-[#2E2E2E] p-5 rounded-lg border border-[#00AEEF] shadow-md">
+      <h2 class="text-2xl font-bold text-[#FFD500] mb-3">Account Info</h2>
+
+      <div class="space-y-3">
+        <p><strong>Username:</strong> <span id="user-name">-</span></p>
+        <p><strong>Email:</strong> <span id="user-email">-</span></p>
+        <p><strong>Birthdate:</strong> <span id="user-birthdate">-</span></p>
+
+        <button onclick="editProfile()"
+          class="mt-3 w-full bg-[#FFD500] text-black font-bold py-2 rounded hover:bg-yellow-400">
+          Edit Profile
+        </button>
+      </div>
+    </section>
+
+
+    <!-- ============================
+         SECURITY
+    ============================== -->
+    <section class="bg-[#2E2E2E] p-5 rounded-lg border border-[#00AEEF] shadow-md">
+      <h2 class="text-2xl font-bold text-[#FFD500] mb-3">Security</h2>
+
+      <button onclick="changePassword()"
+        class="w-full bg-[#FFD500] text-black py-2 rounded font-bold hover:bg-yellow-400">
+        Change Password
+      </button>
+    </section>
+
+
+    <!-- ============================
+         STORAGE MANAGEMENT
+    ============================== -->
+    <!-- <section class="bg-[#2E2E2E] p-5 rounded-lg border border-[#00AEEF] shadow-md">
+      <h2 class="text-2xl font-bold text-[#FFD500] mb-3">Storage</h2>
+
+      <button onclick="clearCart()"
+        class="w-full bg-red-600 py-2 rounded font-bold hover:bg-red-500 mb-3">
+        Hapus Semua Cart
+      </button>
+
+      <button onclick="clearHistory()"
+        class="w-full bg-red-600 py-2 rounded font-bold hover:bg-red-500">
+        Hapus Semua History
+      </button>
+    </section> -->
+
+
+    <!-- ============================
+         LOGOUT
+    ============================== -->
+    <section class="bg-[#2E2E2E] p-5 rounded-lg border border-[#00AEEF] shadow-md">
+      <button onclick="logout()"
+        class="w-full bg-red-500 py-2 font-bold rounded hover:bg-red-400">
+        Logout
+      </button>
+    </section>
+
+  </div>
+
+  <script>
+    // LOAD DATA USER
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+    if (!currentUser) {
+      alert("Anda belum login!");
+      window.location.href = "Login.html";
+    }
+
+    document.getElementById("user-name").innerText = currentUser.UserName;
+    document.getElementById("user-email").innerText = currentUser.Email;
+    document.getElementById("user-birthdate").innerText = currentUser.Birthdate;
+
+
+    // ======================
+    //  FUNCTION EDIT PROFILE
+    // ======================
+    function editProfile() {
+      let newName = prompt("Edit Username:", currentUser.UserName);
+      let newEmail = prompt("Edit Email:", currentUser.Email);
+
+      if (newName && newEmail) {
+        currentUser.UserName = newName;
+        currentUser.Email = newEmail;
+
+        localStorage.setItem("currentUser", JSON.stringify(currentUser));
+
+        alert("Profil berhasil diperbarui!");
+        location.reload();
+      }
+    }
+
+
+    // ======================
+    //  CHANGE PASSWORD
+    // ======================
+    function changePassword() {
+      let newPass = prompt("Masukkan password baru:");
+
+      if (!newPass) return;
+
+      currentUser.Password = newPass;
+      localStorage.setItem("currentUser", JSON.stringify(currentUser));
+
+      alert("Password berhasil diganti!");
+    }
+
+
+    // // ======================
+    // //  CLEAR CART
+    // // ======================
+    // function clearCart() {
+    //   if (confirm("Yakin hapus semua cart?")) {
+    //     localStorage.removeItem("cart");
+    //     alert("Cart berhasil dikosongkan!");
+    //   }
+    // }
+
+
+    // // ======================
+    // //  CLEAR HISTORY
+    // // ======================
+    // function clearHistory() {
+    //   if (confirm("Hapus semua history?")) {
+    //     localStorage.removeItem("history");
+    //     alert("Semua history dihapus!");
+    //   }
+    // }
+
+
+    // ======================
+    //  LOGOUT
+    // ======================
+    function logout() {
+      localStorage.removeItem("currentUser");
+      alert("Logout berhasil!");
+      window.location.href = "Landing-page.html";
+    }
+  </script>
+
+</body>
+</html>

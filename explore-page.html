@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Explore Product - Getting By Shop</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      body {
+        background-color: #1a1a1a;
+        color: #ffffff;
+        font-family: Arial, sans-serif;
+      }
+    </style>
+  </head>
+
+  <body>
+    
+    <!-- ============================
+         SIDEBAR (HIDDEN BY DEFAULT)
+    ============================== -->
+    <aside id="sidebar"
+      class="fixed top-0 left-0 w-64 h-full bg-[#2E2E2E] text-white shadow-xl border-r border-[#00AEEF]
+             transform -translate-x-full transition-transform duration-300 z-50">
+
+      <div class="p-6 text-2xl font-bold border-b border-gray-700 flex items-center gap-2">
+        <span class="inline-block w-2 h-6 bg-[#00AEEF] rounded"></span>
+        Shopping
+      </div>
+
+      <nav class="p-6 space-y-4">
+        <a href="homepage-after.html"
+           class="flex items-center gap-3 px-4 py-2 rounded hover:bg-gray-700 text-lg">
+          <i class="bi bi-house-door-fill text-[#FFD500] text-xl"></i> Homepage
+        </a>
+
+        <a href="#"
+           class="flex items-center gap-3 px-4 py-2 rounded bg-gray-700 text-[#FFD500] font-bold text-lg">
+          <i class="bi bi-grid-fill text-[#FFD500] text-xl"></i> Explore Product
+        </a>
+      </nav>
+
+      <div class="absolute bottom-0 w-full p-4 border-t border-gray-700">
+        <a href="Settings-page.html" class="flex items-center gap-2 px-4 py-2 rounded hover:bg-gray-700 mb-3">
+          <i class="bi bi-gear-fill text-[#FFD500]"></i> Settings
+        </a>
+
+        <a href="Landing-page.html">
+          <button class="w-full bg-[#FFD500] text-black py-2 rounded font-bold hover:bg-yellow-400">
+            Logout
+          </button>
+        </a>
+      </div>
+    </aside>
+
+    <!-- OVERLAY -->
+    <div id="overlay"
+      class="fixed inset-0 bg-black bg-opacity-50 hidden z-40"
+      onclick="closeSidebar()">
+    </div>
+
+    <!-- ============================
+         NAVBAR + HAMBURGER
+    ============================== -->
+    <nav class="w-full px-4 py-3 flex items-center justify-between bg-[#2E2E2E] border-b border-[#00AEEF] shadow-lg sticky top-0 z-30">
+
+      <!-- HAMBURGER -->
+      <button onclick="openSidebar()" class="text-[#FFD500] text-3xl">
+        <i class="bi bi-list"></i>
+      </button>
+
+      <div class="flex items-center gap-2">
+        <img src="image source/getting by logo.png" class="w-16" />
+        <span class="font-bold text-[#FFD500] tracking-widest text-sm">GETTING BY SHOP</span>
+      </div>
+
+      <div class="flex items-center gap-4 text-2xl">
+        <a href="notif.html" class="hover:text-[#00AEEF]"><i class="bi bi-bell"></i></a>
+        <a href="cart page.html" class="hover:text-[#00AEEF]"><i class="bi bi-cart2"></i></a>
+        <a href="profile-page.html"><i class="bi bi-person-circle hover:text-[#00AEEF]"></i></a>
+      </div>
+    </nav>
+
+    <!-- WRAPPER CONTENT -->
+    <div class="p-8">
+
+      <!-- ============================
+           BEST SELLER
+      ============================== -->
+      <h1 class="text-3xl font-bold mb-6 text-[#FFD500]">Best Seller</h1>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+
+        <!-- 1 -->
+        <div class="bg-[#2E2E2E] border border-[#00AEEF] rounded-lg shadow-lg overflow-hidden">
+          <img src="image source/aki best.jpg" class="w-full h-40 object-cover">
+          <div class="p-4">
+            <h5 class="text-lg font-bold text-[#FFD500]">Aki Mobil NS40Z</h5>
+            <p class="text-gray-300">Rp900.000</p>
+            <button onclick="addToCart('Aki Mobil NS40Z',900000,'image source/aki best.jpg')"
+              class="mt-3 w-full bg-[#FFD500] text-black py-2 rounded font-bold hover:bg-yellow-400">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+        <!-- 2 -->
+        <div class="bg-[#2E2E2E] border border-[#00AEEF] rounded-lg shadow-lg overflow-hidden">
+          <img src="image source/Busi Best.jpg" class="w-full h-40 object-cover">
+          <div class="p-4">
+            <h5 class="text-lg font-bold text-[#FFD500]">Busi Motor NGK CPR9EA</h5>
+            <p class="text-gray-300">Rp30.000</p>
+            <button onclick="addToCart('Busi Motor NGK CPR9EA',30000,'image source/Busi Best.jpg')"
+              class="mt-3 w-full bg-[#FFD500] text-black py-2 rounded font-bold hover:bg-yellow-400">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+        <!-- 3 -->
+        <div class="bg-[#2E2E2E] border border-[#00AEEF] rounded-lg shadow-lg overflow-hidden">
+          <img src="image source/Radiator Best.jpg" class="w-full h-40 object-cover">
+          <div class="p-4">
+            <h5 class="text-lg font-bold text-[#FFD500]">Radiator Mobil Toyota</h5>
+            <p class="text-gray-300">Rp1.500.000</p>
+            <button onclick="addToCart('Radiator Mobil Toyota',1500000,'image source/Radiator Best.jpg')"
+              class="mt-3 w-full bg-[#FFD500] text-black py-2 rounded font-bold hover:bg-yellow-400">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+        <!-- 4 -->
+        <div class="bg-[#2E2E2E] border border-[#00AEEF] rounded-lg shadow-lg overflow-hidden">
+          <img src="image source/injektor best.jpg" class="w-full h-40 object-cover">
+          <div class="p-4">
+            <h5 class="text-lg font-bold text-[#FFD500]">Injektor Motor Vario</h5>
+            <p class="text-gray-300">Rp350.000</p>
+            <button onclick="addToCart('Injektor Motor Vario',350000,'image source/injektor best.jpg')"
+              class="mt-3 w-full bg-[#FFD500] text-black py-2 rounded font-bold hover:bg-yellow-400">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================
+           DISKON
+      ============================== -->
+      <h1 class="text-3xl font-bold mb-6 text-[#FFD500]">Diskon</h1>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+
+        <div class="bg-[#2E2E2E] border border-[#00AEEF] rounded-lg shadow-lg overflow-hidden">
+          <img src="image source/spioler diskon.jpg" class="w-full h-40 object-cover">
+          <div class="p-4">
+            <h5 class="text-lg font-bold text-[#FFD500]">Spoiler Mobil Racing</h5>
+            <p class="text-gray-300">Rp1.500.000 -> Rp999.000</p>
+            <button onclick="addToCart('Spoiler Mobil Racing',999000,'image source/spioler diskon.jpg')"
+              class="mt-3 w-full bg-[#FFD500] text-black py-2 rounded font-bold hover:bg-yellow-400">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+        <div class="bg-[#2E2E2E] border border-[#00AEEF] rounded-lg shadow-lg overflow-hidden">
+          <img src="image source/Aki diskon.jpg" class="w-full h-40 object-cover">
+          <div class="p-4">
+            <h5 class="text-lg font-bold text-[#FFD500]">Aki Motor GS Astra</h5>
+            <p class="text-gray-300">Rp300.000 -> Rp250.000</p>
+            <button onclick="addToCart('Aki Motor GS Astra',250000,'image source/Aki diskon.jpg')"
+              class="mt-3 w-full bg-[#FFD500] text-black py-2 rounded font-bold hover:bg-yellow-400">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+        <div class="bg-[#2E2E2E] border border-[#00AEEF] rounded-lg shadow-lg overflow-hidden">
+          <img src="image source/Piston diskon.jpg" class="w-full h-40 object-cover">
+          <div class="p-4">
+            <h5 class="text-lg font-bold text-[#FFD500]">Piston Mobil Honda</h5>
+            <p class="text-gray-300">Rp600.000 -> Rp480.000</p>
+            <button onclick="addToCart('Piston Mobil Honda',480000,'image source/Piston diskon.jpg')"
+              class="mt-3 w-full bg-[#FFD500] text-black py-2 rounded font-bold hover:bg-yellow-400">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+        <div class="bg-[#2E2E2E] border border-[#00AEEF] rounded-lg shadow-lg overflow-hidden">
+          <img src="image source/data.jpeg.webp" class="w-full h-40 object-cover">
+          <div class="p-4">
+            <h5 class="text-lg font-bold text-[#FFD500]">Bumper Motor Beat</h5>
+            <p class="text-gray-300">Rp300.000 -> Rp220.000</p>
+            <button onclick="addToCart('Bumper Motor Beat',220000,'image source/data.jpeg.webp')"
+              class="mt-3 w-full bg-[#FFD500] text-black py-2 rounded font-bold hover:bg-yellow-400">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================
+           PRODUCT
+      ============================== -->
+      <h1 class="text-3xl font-bold mb-6 text-[#FFD500]">Product</h1>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+
+        <div class="bg-[#2E2E2E] border border-[#00AEEF] rounded-lg shadow-lg overflow-hidden">
+          <img src="image source/Piston product.jpg" class="w-full h-40 object-cover">
+          <div class="p-4">
+            <h5 class="text-lg font-bold text-[#FFD500]">Piston Motor Mio J</h5>
+            <p class="text-gray-300">Rp200.000</p>
+            <button onclick="addToCart('Piston Motor Mio J',200000,'image source/Piston product.jpg')"
+              class="mt-3 w-full bg-[#FFD500] text-black py-2 rounded font-bold hover:bg-yellow-400">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+        <div class="bg-[#2E2E2E] border border-[#00AEEF] rounded-lg shadow-lg overflow-hidden">
+          <img src="image source/injektor product.jpg" class="w-full h-40 object-cover">
+          <div class="p-4">
+            <h5 class="text-lg font-bold text-[#FFD500]">Injektor Mobil Diesel</h5>
+            <p class="text-gray-300">Rp800.000</p>
+            <button onclick="addToCart('Injektor Mobil Diesel',800000,'image source/injektor product.jpg')"
+              class="mt-3 w-full bg-[#FFD500] text-black py-2 rounded font-bold hover:bg-yellow-400">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+        <div class="bg-[#2E2E2E] border border-[#00AEEF] rounded-lg shadow-lg overflow-hidden">
+          <img src="image source/8b268cf5b66db275b05c61dbfd529740.jpg" class="w-full h-40 object-cover">
+          <div class="p-4">
+            <h5 class="text-lg font-bold text-[#FFD500]">Radiator Motor Ninja</h5>
+            <p class="text-gray-300">Rp600.000</p>
+            <button onclick="addToCart('Radiator Motor Ninja',600000,'image source/8b268cf5b66db275b05c61dbfd529740.jpg')"
+              class="mt-3 w-full bg-[#FFD500] text-black py-2 rounded font-bold hover:bg-yellow-400">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+        <div class="bg-[#2E2E2E] border border-[#00AEEF] rounded-lg shadow-lg overflow-hidden">
+          <img src="image source/busi product.jpg" class="w-full h-40 object-cover">
+          <div class="p-4">
+            <h5 class="text-lg font-bold text-[#FFD500]">Busi Mobil Denso Iridium</h5>
+            <p class="text-gray-300">Rp50.000</p>
+            <button onclick="addToCart('Busi Mobil Denso Iridium',50000,'image source/busi product.jpg')"
+              class="mt-3 w-full bg-[#FFD500] text-black py-2 rounded font-bold hover:bg-yellow-400">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ============================
+         ADD TO CART FUNCTION
+    ============================== -->
+    <script>
+      function openSidebar() {
+        sidebar.classList.remove("-translate-x-full");
+        overlay.classList.remove("hidden");
+      }
+      function closeSidebar() {
+        sidebar.classList.add("-translate-x-full");
+        overlay.classList.add("hidden");
+      }
+
+      function addToCart(name, price, image) {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        let history = JSON.parse(localStorage.getItem("history")) || [];
+
+        const existing = cart.find(item => item.name === name);
+
+        if (existing) {
+          existing.quantity++;
+        } else {
+          cart.push({ name, price, image, quantity: 1 });
+        }
+
+        history.push({
+          action: "Add to Cart",
+          detail: `${name} dimasukkan ke keranjang`,
+          time: new Date().toLocaleString()
+        });
+
+        localStorage.setItem("cart", JSON.stringify(cart));
+        localStorage.setItem("history", JSON.stringify(history));
+
+        alert(name + " berhasil ditambahkan ke keranjang!");
+      }
+    </script>
+
+    <!-- ICONS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+  </body>
+</html>
